@@ -67,4 +67,15 @@ describe('MoviesService', () => {
       expect('Update TEST').toEqual(movie.title);
     });
   });
+
+  describe('Not Found Error', () => {
+    it('not found id 999', () => {
+      try {
+        service.getOne(999);
+      } catch (e) {
+        expect(e).toBeInstanceOf(NotFoundException);
+        expect(e.message).toEqual('not found id : 999');
+      }
+    });
+  });
 });
